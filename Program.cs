@@ -31,6 +31,8 @@ class Program
         // Elena: 3
 
         Console.WriteLine("Posts ordered by date of last comment. Result should include text of last comment:");
+        Console.WriteLine(
+            JsonSerializer.Serialize(BlogService.PostsOrderedByLastCommentDate(context)));
         //ToDo: write a query and dump the data to console
         // Expected result (format could be different, e.g. object serialized to JSON is ok):
         // Post2: '2020-03-06', '4'
