@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using Blog.services;
 using Microsoft.Extensions.Logging;
 
 class Program
@@ -20,8 +21,9 @@ class Program
         var data = context.BlogPosts.Select(x => x.Title).ToList();
         Console.WriteLine(JsonSerializer.Serialize(data));
             
-            
         Console.WriteLine("How many comments each user left:");
+        Console.WriteLine(
+            JsonSerializer.Serialize(BlogService.NumberOfCommentsPerUser(context)));
         //ToDo: write a query and dump the data to console
         // Expected result (format could be different, e.g. object serialized to JSON is ok):
         // Ivan: 4
