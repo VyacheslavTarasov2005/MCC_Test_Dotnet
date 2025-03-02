@@ -41,6 +41,8 @@ class Program
 
 
         Console.WriteLine("How many last comments each user left:");
+        Console.WriteLine(
+            JsonSerializer.Serialize(BlogService.NumberOfLastCommentsLeftByUser(context)));
         // 'last comment' is the latest Comment in each Post
         //ToDo: write a query and dump the data to console
         // Expected result (format could be different, e.g. object serialized to JSON is ok):

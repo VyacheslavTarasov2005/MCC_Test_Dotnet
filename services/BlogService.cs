@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Blog.DTOs;
@@ -38,6 +37,25 @@ public class BlogService
             )
             .ToList()
             .OrderByDescending(post => post.LastComment?.CreatedDate)
+            .ToList();
+        
+        return response;
+    }
+
+    public static List<NumberOfUserCommentsResponse> NumberOfLastCommentsLeftByUser(MyDbContext context)
+    {
+        var response = context.BlogPosts
+            .Select(post => post.Comments
+                .OrderByDescending(comment => comment.CreatedDate)
+                .FirstOrDefault()
+            )
+            .Where(comment => comment != null)
+            .GroupBy(comment => comment!.UserName)
+            .Select(group => new NumberOfUserCommentsResponse(
+                    group.Key,
+                    group.Count()
+                )
+            )
             .ToList();
         
         return response;
